@@ -1,15 +1,16 @@
 from openpyxl import load_workbook
+from openpyxl.utils.cell import column_index_from_string
 wb=load_workbook(filename='relic_data.xlsx')
 relic_condition=[1,1,1,1,1]
     
 def relic_board(relic_condition):
     global entry_type
     outcome=[0,0,0,0,[],[],0,0,0,0,0,0]
-    for rownd1 in range(1,6):
-        sheet1=wb[wb.sheetnames(rownd1)]
-        for rownd2 in range(2,7):
-            cell1=sheet1.cell(row=relic_condition[rownd1-1],column=rownd2).value
-            cell2=sheet1.cell(row=relic_condition[rownd1-1],column=rownd2+5).value
+    for round1 in range(1,6):
+        sheet1=wb[wb.sheetnames(round1)]
+        for round2 in range(2,7):
+            cell1=sheet1.cell(row=relic_condition[round1-1],column=round2).value
+            cell2=sheet1.cell(row=relic_condition[round1-1],column=round2+5).value
         if isdamage(cell1) != 0:
             func=outcome[5]
             func.append(cell2)
@@ -53,3 +54,15 @@ def isdamage(a):
         return 8
     else:
         return 0
+def relic_suit(relic_condition):#查看套件类型
+    suit={}
+    suit_type=[]
+    for round1 in range(0,5):
+        sheet1=wb[wb.sheetnames(round1+1)]
+        cell=sheet1.cell(row=relic_condition[round1],column=1).value
+        suit[cell]+=1
+        if suit[cell]==1:
+            suit_type.append(cell)
+    return suit,suit_type
+def suit_board_plus(suit,suit_type): #套件效果计算 
+    pass
