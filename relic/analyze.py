@@ -21,7 +21,7 @@ def relic_board(relic_condition):
             outcome[entry_type[cell1]] += cell2
     return outcome
 
- entry_type={
+entry_type={
     '攻击力':        1,
     '攻击力百分比':  2,
     '暴击率':        3,
