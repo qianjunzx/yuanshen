@@ -66,3 +66,5 @@ def relic_suit(relic_condition):#查看套件类型
     return suit,suit_type
 def suit_board_plus(suit,suit_type): #套件效果计算 
     pass
+def abab():
+    pass
