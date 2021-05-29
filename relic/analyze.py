@@ -3,9 +3,9 @@ from openpyxl.utils.cell import column_index_from_string
 wb=load_workbook(filename='relic_data.xlsx')
 relic_condition=[1,1,1,1,1]
     
-def relic_board(relic_condition):
+def relic_board(relic_condition):#圣遗物面板加合，输出格式为列表，1.攻击力 2.攻击力百分比...(见antry_type字典)
     global entry_type
-    outcome=[0,0,0,0,[],[],0,0,0,0,0,0]
+    outcome=[0,0,0,0,[],[],0,0,0,0,0,0,0,[],[],0]#圣遗物面板输出
     for round1 in range(1,6):
         sheet1=wb[wb.sheetnames(round1)]
         for round2 in range(2,7):
@@ -22,7 +22,7 @@ def relic_board(relic_condition):
             outcome[entry_type[cell1]] += cell2
     return outcome
 
-entry_type={
+entry_type={#词条和编号的映射
     '攻击力':        1,
     '攻击力百分比':   2,
     '暴击率':        3,
@@ -37,7 +37,7 @@ entry_type={
     '护盾强效':     16,
 }
 
-def isdamage(a):
+def isdamage(a):#伤害加成类型和编号的映射（顺带用于判断词条是否为增伤）
     if a == '火元素伤害加成':
         return 1
     elif a == '水元素伤害加成':
@@ -95,5 +95,23 @@ def relic_suit(relic_condition):#查看套件类型
         if suit[cell]==1:
             suit_type.append(cell)
     return suit,suit_type
-def suit_condition(a,b,c):
-    pass
+def suit_condition(suit,suit_type,outcome):
+    for round1 in suit_type:
+        effort_list=suit_effort[round1]
+        suit_quant=suit[round1]
+        if suit_quant >= 2:
+            if effort_list[0]== 1:
+                outcome[effort_list[1]]+=effort_list[2]
+            if effort_list[0]== 2:
+                outcome[5].append(effort_list[2])
+                outcome[6].append(effort_list[1])
+        if suit_quant >= 4:
+            i=int(len(effort_list)/3)
+            for round2 in range(2,i+1):
+                j=3*round2-4
+                if effort_list[j]== 1:
+                    outcome[effort_list[j+1]]+=effort_list[j+2]
+                if effort_list[0]== 2:
+                    outcome[5].append(effort_list[j+2])
+                    outcome[6].append(effort_list[j+1])
+    return outcome
