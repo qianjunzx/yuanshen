@@ -95,7 +95,7 @@ def relic_suit(relic_condition):#查看套件类型
         if suit[cell]==1:
             suit_type.append(cell)
     return suit,suit_type
-def suit_condition(suit,suit_type,outcome):
+def suit_condition(suit,suit_type,outcome):#
     for round1 in suit_type:
         effort_list=suit_effort[round1]
         suit_quant=suit[round1]
@@ -115,3 +115,6 @@ def suit_condition(suit,suit_type,outcome):
                     outcome[5].append(effort_list[j+2])
                     outcome[6].append(effort_list[j+1])
     return outcome
+
+def character_board(character,level):
+    pass
