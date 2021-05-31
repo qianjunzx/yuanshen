@@ -124,6 +124,20 @@ def suit_condition(suit, suit_type, outcome):  #
                     outcome[6].append(effort_list[j + 1])
     return outcome
 
-
-def character_board(character, level):
+class character(object):
+    def __init__(self):
+        self.character_board = [0, 0, 0, 0, [], [], 0, 0, 0, 0, 0, 0, 0, [], [], 0]
+    def get_board(self):
+        return self.character_board
+class wind(character):
+    pass
+class stone(character):
+    pass
+class fire(character):
+    pass
+class water(character):
+    pass
+class ice(character):
+    pass
+class lightning(character):
     pass
