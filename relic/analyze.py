@@ -124,6 +124,7 @@ def suit_condition(suit, suit_type, outcome):  #
                     outcome[6].append(effort_list[j + 1])
     return outcome
 
+
 class character(object):
     def __init__(self):
         self.character_board = [0, 0, 0, 0, [], [], 0, 0, 0, 0, 0, 0, 0, [], [], 0]
