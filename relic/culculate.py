@@ -5,4 +5,5 @@ class fundmantal_board(object):
 
     def output(self,entry_type):#输出面板数据方法
         return self.dic[entry_type]
+aaaaaa
 
